@@ -2,19 +2,20 @@ package com.newrishman.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "CarOwner")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class CarOwner {
+
+    @Id
     @Column(name = "idCar")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idCar;
     @Column(name = "idOwner")
     private long idOwner;
-
 
 
     public CarOwner(long idCar, long idOwner) {
@@ -65,5 +66,19 @@ public class CarOwner {
                 "idCar=" + idCar +
                 ", idOwner=" + idOwner +
                 '}';
+    }
+
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "Job", joinColumns = @JoinColumn(name = "idCar"), inverseJoinColumns = @JoinColumn(name = "idAction")
+    )
+    private Set<ActionToWorker> actionToWorkers;
+
+    public Set<ActionToWorker> getActionToWorkers() {
+        return actionToWorkers;
+    }
+
+    public void setActionToWorkers(Set<ActionToWorker> actionToWorkers) {
+        this.actionToWorkers = actionToWorkers;
     }
 }

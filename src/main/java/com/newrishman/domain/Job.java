@@ -2,19 +2,19 @@ package com.newrishman.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "Job")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Job {
 
+    @Id
+    @Column(name = "idCar")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long idCar;
     @Column(name = "idAction")
     private long idAction;
-    @Column(name = "idCar")
-    private long idCar;
     @Column(name = "DataTime")
     private String DataTime;
 

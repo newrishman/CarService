@@ -3,6 +3,7 @@ package com.newrishman.domain;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "Cars")
@@ -16,7 +17,6 @@ public class Cars {
 
     @Column(name = "CarModel")
     private String CarModel;
-
 
 
     public Cars(long idCar, String carModel) {
@@ -67,5 +67,19 @@ public class Cars {
                 "idCar=" + idCar +
                 ", CarModel='" + CarModel + '\'' +
                 '}';
+    }
+
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "CarOwner", joinColumns = @JoinColumn(name = "idCar"), inverseJoinColumns = @JoinColumn(name = "idOwner")
+    )
+    private Set<Owners> owners;
+
+    public Set<Owners> getOwners() {
+        return owners;
+    }
+
+    public void setOwners(Set<Owners> owners) {
+        this.owners = owners;
     }
 }

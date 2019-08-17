@@ -3,6 +3,7 @@ package com.newrishman.domain;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "Actions")
@@ -16,7 +17,6 @@ public class Actions {
 
     @Column(name = "Job")
     private String Job;
-
 
 
     public long getIdAction() {
@@ -64,5 +64,19 @@ public class Actions {
     @Override
     public String toString() {
         return Job + " " + idAction;
+    }
+
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "ActionToWorker", joinColumns = @JoinColumn(name = "idAction"), inverseJoinColumns = @JoinColumn(name = "idWorker")
+    )
+    private Set<Workers> workers;
+
+    public Set<Workers> getWorkers() {
+        return workers;
+    }
+
+    public void setWorkers(Set<Workers> workers) {
+        this.workers = workers;
     }
 }

@@ -3,6 +3,7 @@ package com.newrishman.domain;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "Workers")
@@ -16,8 +17,6 @@ public class Workers {
 
     @Column(name = "Worker")
     private String Worker;
-
-
 
 
     public Workers(long idWorker, String worker) {
@@ -68,5 +67,16 @@ public class Workers {
                 "idWorker=" + idWorker +
                 ", Worker='" + Worker + '\'' +
                 '}';
+    }
+
+    @ManyToMany(mappedBy = "workers")
+    private Set<Actions> actions;
+
+    public Set<Actions> getActions() {
+        return actions;
+    }
+
+    public void setActions(Set<Actions> actions) {
+        this.actions = actions;
     }
 }
