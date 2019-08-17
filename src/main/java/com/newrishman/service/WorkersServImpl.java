@@ -11,16 +11,6 @@ public class WorkersServImpl implements WorkersServ{
     }
 
     @Override
-    public Workers saveWorkers(Workers workers) {
-        return null;
-    }
-
-    @Override
-    public void updateWorkers(Workers workers) {
-
-    }
-
-    @Override
     public void deleteWorkers(long id) {
 
     }

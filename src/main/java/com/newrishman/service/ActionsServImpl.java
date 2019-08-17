@@ -11,16 +11,6 @@ public class ActionsServImpl implements ActionsServ{
     }
 
     @Override
-    public Actions saveActions(Actions actions) {
-        return null;
-    }
-
-    @Override
-    public void updateActions(Actions actions) {
-
-    }
-
-    @Override
     public void deleteActions(long id) {
 
     }

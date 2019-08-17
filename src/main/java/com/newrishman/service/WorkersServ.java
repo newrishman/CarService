@@ -8,10 +8,6 @@ public interface WorkersServ{
 
     Workers getWorkersById(long id);
 
-    Workers saveWorkers(Workers workers);
-
-    void updateWorkers(Workers workers);
-
     void deleteWorkers(long id);
 
     List<Workers> findAll();
