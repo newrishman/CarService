@@ -1,14 +1,12 @@
 package com.newrishman.service;
 
 import com.newrishman.domain.Owners;
-import com.newrishman.repository.ActionsRepository;
 import com.newrishman.repository.OwnersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 @Service
-public class OwnersServiceImpl implements OwnersService{
+public class OwnersServiceImpl implements OwnersService {
 
     private OwnersRepository repository;
 
