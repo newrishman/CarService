@@ -16,12 +16,6 @@ public class CarsServiceImpl implements CarsService {
     }
 
     @Override
-    public Cars saveCars(Cars cars) {
-        repository.save(cars);
-        return cars;
-    }
-
-    @Override
     public Cars getCarsByCarModel(String carModel) {
         return repository.getCarsByCarModel(carModel);
     }
