@@ -6,13 +6,4 @@ import java.util.List;
 
 public interface JobService{
 
-    Job getJobById(long id);
-
-    Job saveJob(Job job);
-
-    void updateJob(Job job);
-
-    void deleteJob(long id);
-
-    List<Job> findAll();
 }

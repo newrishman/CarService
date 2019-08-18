@@ -6,13 +6,4 @@ import java.util.List;
 
 public interface OwnersService{
 
-    Owners getOwnersById(long id);
-
-    Owners saveOwners(Owners owners);
-
-    void updateOwners(Owners owners);
-
-    void deleteOwners(long id);
-
-    List<Owners> findAll();
 }
