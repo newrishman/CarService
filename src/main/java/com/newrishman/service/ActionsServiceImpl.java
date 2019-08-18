@@ -16,12 +16,12 @@ public class ActionsServiceImpl implements ActionsService {
     }
 
     @Override
-    public Actions getIdByJob(String job) {
-        return repository.getIdByJob(job);
+    public Actions getActionsByJob(String job) {
+        return repository.getActionsByJob(job);
     }
 
     @Override
-    public Actions getJobById(long id) {
+    public Actions getActionsById(long id) {
         return repository.getOne(id);
     }
 

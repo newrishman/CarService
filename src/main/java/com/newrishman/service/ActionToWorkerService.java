@@ -2,18 +2,8 @@ package com.newrishman.service;
 
 import com.newrishman.domain.ActionToWorker;
 
-import java.util.List;
+public interface ActionToWorkerService {
+    ActionToWorker getActionToWorkerByidAction(long id);
 
-public interface ActionToWorkerService{
-
-        ActionToWorker getActionToWorkerById(long id);
-
-        ActionToWorker saveActionToWorker(ActionToWorker actionToWorker);
-
-        void updateActionToWorker(ActionToWorker actionToWorker);
-
-        void deleteActionToWorker(long id);
-
-        List<ActionToWorker> findAll();
-
+    ActionToWorker getActionToWorkerByidWorker(long id);
 }
