@@ -2,8 +2,8 @@ package com.newrishman.service;
 
 import com.newrishman.domain.Cars;
 
-import java.util.List;
+public interface CarsService {
+    Cars saveCars(Cars cars);
 
-public interface CarsService{
-
+    Cars getCarsByCarModel(String carModel);
 }
