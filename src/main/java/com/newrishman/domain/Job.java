@@ -15,13 +15,13 @@ public class Job {
     private long idCar;
     @Column(name = "idAction")
     private long idAction;
-    @Column(name = "DataTime")
-    private String DataTime;
+    @Column(name = "DateTime")
+    private String DateTime;
 
     public Job(long idAction, long idCar, String dataTime) {
         this.idAction = idAction;
         this.idCar = idCar;
-        DataTime = dataTime;
+        DateTime = dataTime;
     }
 
     public Job() {
@@ -44,11 +44,11 @@ public class Job {
     }
 
     public String getDataTime() {
-        return DataTime;
+        return DateTime;
     }
 
     public void setDataTime(String dataTime) {
-        DataTime = dataTime;
+        DateTime = dataTime;
     }
 
     @Override
@@ -60,14 +60,14 @@ public class Job {
 
         if (idAction != job.idAction) return false;
         if (idCar != job.idCar) return false;
-        return DataTime != null ? DataTime.equals(job.DataTime) : job.DataTime == null;
+        return DateTime != null ? DateTime.equals(job.DateTime) : job.DateTime == null;
     }
 
     @Override
     public int hashCode() {
         int result = (int) (idAction ^ (idAction >>> 32));
         result = 31 * result + (int) (idCar ^ (idCar >>> 32));
-        result = 31 * result + (DataTime != null ? DataTime.hashCode() : 0);
+        result = 31 * result + (DateTime != null ? DateTime.hashCode() : 0);
         return result;
     }
 
@@ -76,7 +76,7 @@ public class Job {
         return "Job{" +
                 "idAction=" + idAction +
                 ", idCar=" + idCar +
-                ", DataTime='" + DataTime + '\'' +
+                ", DataTime='" + DateTime + '\'' +
                 '}';
     }
 }
