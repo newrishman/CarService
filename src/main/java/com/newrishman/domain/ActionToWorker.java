@@ -67,15 +67,4 @@ public class ActionToWorker {
                 ", idWorker=" + idWorker +
                 '}';
     }
-
-    @ManyToMany(mappedBy = "actionToWorkers")
-    private Set<CarOwner> carOwners;
-
-    public Set<CarOwner> getCarOwners() {
-        return carOwners;
-    }
-
-    public void setCarOwners(Set<CarOwner> carOwners) {
-        this.carOwners = carOwners;
-    }
 }

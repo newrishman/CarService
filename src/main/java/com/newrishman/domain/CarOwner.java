@@ -67,18 +67,4 @@ public class CarOwner {
                 ", idOwner=" + idOwner +
                 '}';
     }
-
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinTable(
-            name = "Job", joinColumns = @JoinColumn(name = "idCar"), inverseJoinColumns = @JoinColumn(name = "idAction")
-    )
-    private Set<ActionToWorker> actionToWorkers;
-
-    public Set<ActionToWorker> getActionToWorkers() {
-        return actionToWorkers;
-    }
-
-    public void setActionToWorkers(Set<ActionToWorker> actionToWorkers) {
-        this.actionToWorkers = actionToWorkers;
-    }
 }
