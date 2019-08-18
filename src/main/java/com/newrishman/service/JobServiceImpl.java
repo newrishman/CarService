@@ -4,7 +4,7 @@ import com.newrishman.domain.Job;
 
 import java.util.List;
 
-public class JobServImpl implements JobServ{
+public class JobServiceImpl implements JobService{
     @Override
     public Job getJobById(long id) {
         return null;

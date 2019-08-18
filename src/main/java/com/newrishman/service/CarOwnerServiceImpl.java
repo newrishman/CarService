@@ -4,7 +4,7 @@ import com.newrishman.domain.CarOwner;
 
 import java.util.List;
 
-public class CarOwnerServImpl implements CarOwnerServ{
+public class CarOwnerServiceImpl implements CarOwnerService{
     @Override
     public CarOwner getCarOwnerById(long id) {
         return null;

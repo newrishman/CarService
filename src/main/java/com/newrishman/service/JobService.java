@@ -4,7 +4,7 @@ import com.newrishman.domain.Job;
 
 import java.util.List;
 
-public interface JobServ{
+public interface JobService{
 
     Job getJobById(long id);
 

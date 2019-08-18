@@ -4,7 +4,7 @@ import com.newrishman.domain.Owners;
 
 import java.util.List;
 
-public class OwnersServImpl implements OwnersServ{
+public class OwnersServiceImpl implements OwnersService{
     @Override
     public Owners getOwnersById(long id) {
         return null;

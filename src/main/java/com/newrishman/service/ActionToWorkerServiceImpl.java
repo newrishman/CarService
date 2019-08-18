@@ -4,7 +4,7 @@ import com.newrishman.domain.ActionToWorker;
 
 import java.util.List;
 
-public class ActionToWorkerServImpl implements ActionToWorkerServ{
+public class ActionToWorkerServiceImpl implements ActionToWorkerService{
     @Override
     public ActionToWorker getActionToWorkerById(long id) {
         return null;

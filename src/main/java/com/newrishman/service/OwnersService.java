@@ -4,7 +4,7 @@ import com.newrishman.domain.Owners;
 
 import java.util.List;
 
-public interface OwnersServ{
+public interface OwnersService{
 
     Owners getOwnersById(long id);
 

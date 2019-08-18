@@ -4,7 +4,7 @@ import com.newrishman.domain.ActionToWorker;
 
 import java.util.List;
 
-public interface ActionToWorkerServ{
+public interface ActionToWorkerService{
 
         ActionToWorker getActionToWorkerById(long id);
 

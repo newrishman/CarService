@@ -4,7 +4,7 @@ import com.newrishman.domain.CarOwner;
 
 import java.util.List;
 
-public interface CarOwnerServ{
+public interface CarOwnerService{
 
     CarOwner getCarOwnerById(long id);
 

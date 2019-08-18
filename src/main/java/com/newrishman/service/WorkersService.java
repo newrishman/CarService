@@ -4,11 +4,8 @@ import com.newrishman.domain.Workers;
 
 import java.util.List;
 
-public interface WorkersServ{
+public interface WorkersService{
 
     Workers getWorkersById(long id);
 
-    void deleteWorkers(long id);
-
-    List<Workers> findAll();
 }
