@@ -66,17 +66,4 @@ public class Actions {
         return Job + " " + idAction;
     }
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinTable(
-            name = "ActionToWorker", joinColumns = @JoinColumn(name = "idAction"), inverseJoinColumns = @JoinColumn(name = "idWorker")
-    )
-    private Set<Workers> workers;
-
-    public Set<Workers> getWorkers() {
-        return workers;
-    }
-
-    public void setWorkers(Set<Workers> workers) {
-        this.workers = workers;
-    }
 }

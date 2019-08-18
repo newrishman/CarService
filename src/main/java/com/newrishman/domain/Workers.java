@@ -68,15 +68,4 @@ public class Workers {
                 ", Worker='" + Worker + '\'' +
                 '}';
     }
-
-    @ManyToMany(mappedBy = "workers")
-    private Set<Actions> actions;
-
-    public Set<Actions> getActions() {
-        return actions;
-    }
-
-    public void setActions(Set<Actions> actions) {
-        this.actions = actions;
-    }
 }
