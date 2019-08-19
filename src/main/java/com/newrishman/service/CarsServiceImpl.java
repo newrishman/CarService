@@ -19,4 +19,9 @@ public class CarsServiceImpl implements CarsService {
     public Cars getCarsByCarModel(String carModel) {
         return repository.getCarsByCarModel(carModel);
     }
+
+    @Override
+    public Cars getCarsByIdCar(long id) {
+        return repository.getOne(id);
+    }
 }
