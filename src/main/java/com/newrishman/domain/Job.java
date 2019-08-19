@@ -10,18 +10,21 @@ import javax.persistence.*;
 public class Job {
 
     @Id
-    @Column(name = "idCar")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long idCar;
     @Column(name = "idAction")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idAction;
+    @Column(name = "idCar")
+    private long idCar;
+    @Column(name = "idWorker")
+    private long idWorker;
     @Column(name = "DateTime")
     private String DateTime;
 
-    public Job(long idAction, long idCar, String dataTime) {
+    public Job(long idAction, long idCar, long idWorker, String dateTime) {
         this.idAction = idAction;
         this.idCar = idCar;
-        DateTime = dataTime;
+        this.idWorker = idWorker;
+        DateTime = dateTime;
     }
 
     public Job() {
@@ -43,12 +46,20 @@ public class Job {
         this.idCar = idCar;
     }
 
-    public String getDataTime() {
+    public long getIdWorker() {
+        return idWorker;
+    }
+
+    public void setIdWorker(long idWorker) {
+        this.idWorker = idWorker;
+    }
+
+    public String getDateTime() {
         return DateTime;
     }
 
-    public void setDataTime(String dataTime) {
-        DateTime = dataTime;
+    public void setDateTime(String dateTime) {
+        DateTime = dateTime;
     }
 
     @Override
@@ -60,6 +71,7 @@ public class Job {
 
         if (idAction != job.idAction) return false;
         if (idCar != job.idCar) return false;
+        if (idWorker != job.idWorker) return false;
         return DateTime != null ? DateTime.equals(job.DateTime) : job.DateTime == null;
     }
 
@@ -67,6 +79,7 @@ public class Job {
     public int hashCode() {
         int result = (int) (idAction ^ (idAction >>> 32));
         result = 31 * result + (int) (idCar ^ (idCar >>> 32));
+        result = 31 * result + (int) (idWorker ^ (idWorker >>> 32));
         result = 31 * result + (DateTime != null ? DateTime.hashCode() : 0);
         return result;
     }
@@ -76,7 +89,8 @@ public class Job {
         return "Job{" +
                 "idAction=" + idAction +
                 ", idCar=" + idCar +
-                ", DataTime='" + DateTime + '\'' +
+                ", idWorker=" + idWorker +
+                ", DateTime='" + DateTime + '\'' +
                 '}';
     }
 }
