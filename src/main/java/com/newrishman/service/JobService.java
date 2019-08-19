@@ -1,5 +1,7 @@
 package com.newrishman.service;
 
-public interface JobService {
+import com.newrishman.domain.Job;
 
+public interface JobService {
+Job saveJob(Job job);
 }
