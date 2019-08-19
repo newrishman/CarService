@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(name = "Cars")
+@Table(name = "cars")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Cars {
 
