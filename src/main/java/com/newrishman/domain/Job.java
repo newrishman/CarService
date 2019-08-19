@@ -18,14 +18,14 @@ public class Job {
     @Column(name = "id_Worker")
     private long idWorker;
     @Column(name = "Date_Time")
-    private String DateTime;
+    private String dateTime;
     //select lol from test where testcol = '1991-11-11 12';
 
     public Job(long idAction, long idCar, long idWorker, String dateTime) {
         this.idAction = idAction;
         this.idCar = idCar;
         this.idWorker = idWorker;
-        DateTime = dateTime;
+        this.dateTime = dateTime;
     }
 
     public Job() {
@@ -56,11 +56,11 @@ public class Job {
     }
 
     public String getDateTime() {
-        return DateTime;
+        return dateTime;
     }
 
     public void setDateTime(String dateTime) {
-        DateTime = dateTime;
+        this.dateTime = dateTime;
     }
 
     @Override
@@ -73,7 +73,7 @@ public class Job {
         if (idAction != job.idAction) return false;
         if (idCar != job.idCar) return false;
         if (idWorker != job.idWorker) return false;
-        return DateTime != null ? DateTime.equals(job.DateTime) : job.DateTime == null;
+        return dateTime != null ? dateTime.equals(job.dateTime) : job.dateTime == null;
     }
 
     @Override
@@ -81,7 +81,7 @@ public class Job {
         int result = (int) (idAction ^ (idAction >>> 32));
         result = 31 * result + (int) (idCar ^ (idCar >>> 32));
         result = 31 * result + (int) (idWorker ^ (idWorker >>> 32));
-        result = 31 * result + (DateTime != null ? DateTime.hashCode() : 0);
+        result = 31 * result + (dateTime != null ? dateTime.hashCode() : 0);
         return result;
     }
 
@@ -91,7 +91,7 @@ public class Job {
                 "idAction=" + idAction +
                 ", idCar=" + idCar +
                 ", idWorker=" + idWorker +
-                ", DateTime='" + DateTime + '\'' +
+                ", DateTime='" + dateTime + '\'' +
                 '}';
     }
 }
