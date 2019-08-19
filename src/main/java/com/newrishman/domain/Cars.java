@@ -19,8 +19,7 @@ public class Cars {
     private String CarModel;
 
 
-    public Cars(long idCar, String carModel) {
-        this.idCar = idCar;
+    public Cars(String carModel) {
         CarModel = carModel;
     }
 
@@ -69,7 +68,7 @@ public class Cars {
                 '}';
     }
 
-   /* @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+   @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable(
             name = "CarOwner", joinColumns = @JoinColumn(name = "idCar"), inverseJoinColumns = @JoinColumn(name = "idOwner")
     )
@@ -81,5 +80,5 @@ public class Cars {
 
     public void setOwners(Set<Owners> owners) {
         this.owners = owners;
-    }*/
+    }
 }

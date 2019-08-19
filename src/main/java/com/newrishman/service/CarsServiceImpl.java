@@ -24,4 +24,9 @@ public class CarsServiceImpl implements CarsService {
     public Cars getCarsByIdCar(long id) {
         return repository.getOne(id);
     }
+
+    @Override
+    public Cars saveCars(Cars cars) {
+        return repository.save(cars);
+    }
 }

@@ -17,8 +17,7 @@ public class OwnersServiceImpl implements OwnersService {
 
     @Override
     public Owners saveOwner(Owners owners) {
-        repository.save(owners);
-        return owners;
+        return repository.save(owners);
     }
 
     @Override

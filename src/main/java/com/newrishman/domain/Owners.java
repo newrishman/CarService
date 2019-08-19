@@ -21,8 +21,7 @@ public class Owners {
     private String LastName;
 
 
-    public Owners(long idOwner, String firstName, String lastName) {
-        this.idOwner = idOwner;
+    public Owners(String firstName, String lastName) {
         FirstName = firstName;
         LastName = lastName;
     }
@@ -83,7 +82,7 @@ public class Owners {
                 '}';
     }
 
-   /* @ManyToMany(mappedBy = "owners")
+   @ManyToMany(mappedBy = "owners")
     private Set<Cars> cars;
 
     public Set<Cars> getCars() {
@@ -92,5 +91,5 @@ public class Owners {
 
     public void setCars(Set<Cars> cars) {
         this.cars = cars;
-    }*/
+    }
 }
