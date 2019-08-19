@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class WorkersServiceImpl implements WorkersService {
+
     private WorkersRepository repository;
 
     public void setRepository(WorkersRepository repository) {
