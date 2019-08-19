@@ -11,10 +11,10 @@ import java.util.Set;
 public class ActionToWorker {
 
     @Id
-    @Column(name = "idAction")
+    @Column(name = "id_Action")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idAction;
-    @Column(name = "idWorker")
+    @Column(name = "id_Worker")
     private long idWorker;
 
 

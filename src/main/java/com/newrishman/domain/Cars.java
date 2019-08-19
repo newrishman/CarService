@@ -11,11 +11,11 @@ import java.util.Set;
 public class Cars {
 
     @Id
-    @Column(name = "idCar")
+    @Column(name = "id_Car")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idCar;
 
-    @Column(name = "CarModel")
+    @Column(name = "Car_Model")
     private String CarModel;
 
 
@@ -69,7 +69,7 @@ public class Cars {
                 '}';
     }
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+   /* @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable(
             name = "CarOwner", joinColumns = @JoinColumn(name = "idCar"), inverseJoinColumns = @JoinColumn(name = "idOwner")
     )
@@ -81,5 +81,5 @@ public class Cars {
 
     public void setOwners(Set<Owners> owners) {
         this.owners = owners;
-    }
+    }*/
 }

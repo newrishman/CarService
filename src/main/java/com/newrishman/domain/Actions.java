@@ -10,12 +10,19 @@ import javax.persistence.*;
 public class Actions {
 
     @Id
-    @Column(name = "idAction")
+    @Column(name = "id_Action")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idAction;
-    @Column(name = "Job")
-    private String Job;
+    @Column(name = "Action")
+    private String Action;
 
+    public Actions() {
+    }
+
+    public Actions(long idAction, String action) {
+        this.idAction = idAction;
+        Action = action;
+    }
 
     public long getIdAction() {
         return idAction;
@@ -25,20 +32,12 @@ public class Actions {
         this.idAction = idAction;
     }
 
-    public String getJob() {
-        return Job;
+    public String getAction() {
+        return Action;
     }
 
-    public void setJob(String job) {
-        Job = job;
-    }
-
-    public Actions(long idAction, String job) {
-        this.idAction = idAction;
-        Job = job;
-    }
-
-    public Actions() {
+    public void setAction(String action) {
+        Action = action;
     }
 
     @Override
@@ -49,19 +48,21 @@ public class Actions {
         Actions actions = (Actions) o;
 
         if (idAction != actions.idAction) return false;
-        return Job != null ? Job.equals(actions.Job) : actions.Job == null;
+        return Action != null ? Action.equals(actions.Action) : actions.Action == null;
     }
 
     @Override
     public int hashCode() {
         int result = (int) (idAction ^ (idAction >>> 32));
-        result = 31 * result + (Job != null ? Job.hashCode() : 0);
+        result = 31 * result + (Action != null ? Action.hashCode() : 0);
         return result;
     }
 
     @Override
     public String toString() {
-        return Job + " " + idAction;
+        return "Actions{" +
+                "idAction=" + idAction +
+                ", Action='" + Action + '\'' +
+                '}';
     }
-
 }

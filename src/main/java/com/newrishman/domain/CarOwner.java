@@ -3,7 +3,6 @@ package com.newrishman.domain;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Entity
 @Table(name = "car_owner")
@@ -11,10 +10,10 @@ import java.util.Set;
 public class CarOwner {
 
     @Id
-    @Column(name = "idCar")
+    @Column(name = "id_Car")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idCar;
-    @Column(name = "idOwner")
+    @Column(name = "id_Owner")
     private long idOwner;
 
 

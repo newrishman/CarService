@@ -10,14 +10,14 @@ import javax.persistence.*;
 public class Job {
 
     @Id
-    @Column(name = "idAction")
+    @Column(name = "id_Action")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idAction;
-    @Column(name = "idCar")
+    @Column(name = "id_Car")
     private long idCar;
-    @Column(name = "idWorker")
+    @Column(name = "id_Worker")
     private long idWorker;
-    @Column(name = "DateTime")
+    @Column(name = "Date_Time")
     private String DateTime;
 
     public Job(long idAction, long idCar, long idWorker, String dateTime) {

@@ -7,5 +7,5 @@ import org.springframework.data.repository.query.Param;
 
 public interface CarOwnerRepository extends JpaRepository<CarOwner, Long> {
     @Query(value = "select * from CarOwner where idOwner = :idOwner", nativeQuery = true)
-    CarOwner getCarOwnerByIdOwner(@Param("IdOwner") long id);
+    CarOwner getCarOwnerByIdOwner(@Param("idOwner") long id);
 }

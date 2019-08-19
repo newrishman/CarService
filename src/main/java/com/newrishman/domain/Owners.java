@@ -11,13 +11,13 @@ import java.util.Set;
 public class Owners {
 
     @Id
-    @Column(name = "idOwner")
+    @Column(name = "id_Owner")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idOwner;
 
-    @Column(name = "FirstName")
+    @Column(name = "First_Name")
     private String FirstName;
-    @Column(name = "LastName")
+    @Column(name = "Last_Name")
     private String LastName;
 
 
@@ -83,7 +83,7 @@ public class Owners {
                 '}';
     }
 
-    @ManyToMany(mappedBy = "owners")
+   /* @ManyToMany(mappedBy = "owners")
     private Set<Cars> cars;
 
     public Set<Cars> getCars() {
@@ -92,5 +92,5 @@ public class Owners {
 
     public void setCars(Set<Cars> cars) {
         this.cars = cars;
-    }
+    }*/
 }
