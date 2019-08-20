@@ -3,7 +3,6 @@ package com.newrishman.domain;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Entity
 @Table(name = "action_to_worker")
@@ -47,10 +46,10 @@ public class ActionToWorker {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        ActionToWorker that = (ActionToWorker) o;
+        ActionToWorker worker = (ActionToWorker) o;
 
-        if (idAction != that.idAction) return false;
-        return idWorker == that.idWorker;
+        if (idAction != worker.idAction) return false;
+        return idWorker == worker.idWorker;
     }
 
     @Override

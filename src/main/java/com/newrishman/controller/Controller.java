@@ -71,10 +71,11 @@ public class Controller {
         //поиск ID работы по названию
         this.action = action;
         idAction = actionsService.getActionsByJob(action).getIdAction();
-
+        System.out.println(idAction);
         //поиск всех рабочих, выполняющих данную работу
         workers = new ArrayList<>();
         workers = actionToWorkerService.getActionToWorkerByidActions(idAction);
+        System.out.println(workers);
         // поиск свободного работника
         this.date = date;
         Long id = jobService.getFreeWorker(workers, date);
@@ -97,7 +98,7 @@ public class Controller {
         cars.add(car);
         Owners owners = ownersService.saveOwner(new Owners(First_Name, Last_Name));
         owners.setCars(cars);
-        
+
         //сохранение записи на ремонт
         jobService.saveJob(new Job(idAction, car.getIdCar(), idWorker, date));
         System.out.println("эта надпись - конец.");
@@ -106,7 +107,7 @@ public class Controller {
     }
 
     @GetMapping
-    public List<Job> getAllJob(){
+    public List<Job> getAllJob() {
         return jobService.getAllJob();
     }
 }

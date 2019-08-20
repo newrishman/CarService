@@ -4,7 +4,6 @@ import com.newrishman.domain.ActionToWorker;
 import com.newrishman.domain.Job;
 
 import java.util.List;
-import java.util.Set;
 
 public interface JobService {
     Job saveJob(Job job);
