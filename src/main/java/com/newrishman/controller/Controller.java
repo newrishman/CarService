@@ -8,6 +8,7 @@ import com.newrishman.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -23,7 +24,7 @@ public class Controller {
     private JobService jobService;
     private OwnersService ownersService;
     private WorkersService workersService;
-    private Set<ActionToWorker> workers;
+    private List<ActionToWorker> workers;
     private long idWorker;
     private long idAction;
     private String date;
@@ -72,7 +73,7 @@ public class Controller {
         idAction = actionsService.getActionsByJob(action).getIdAction();
 
         //поиск всех рабочих, выполняющих данную работу
-        workers = new HashSet<>();
+        workers = new ArrayList<>();
         workers = actionToWorkerService.getActionToWorkerByidActions(idAction);
         // поиск свободного работника
         this.date = date;

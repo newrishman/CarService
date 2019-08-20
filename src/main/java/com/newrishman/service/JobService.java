@@ -11,7 +11,7 @@ public interface JobService {
 
     Job searchWorkerInTime(long idWorker, String date);
 
-    Long getFreeWorker(Set<ActionToWorker> set, String date);
+    Long getFreeWorker(List<ActionToWorker> set, String date);
 
     List<Job> getAllJob();
 }

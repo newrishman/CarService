@@ -33,7 +33,7 @@ public class JobServiceImpl implements JobService {
     }
 
     @Override
-    public Long getFreeWorker(Set<ActionToWorker> set, String date) {
+    public Long getFreeWorker(List<ActionToWorker> set, String date) {
 
         // постановка рабочих в очередь по их ID
         list = new ArrayBlockingQueue<>(10);
@@ -51,7 +51,8 @@ public class JobServiceImpl implements JobService {
         for (int x = 0; x < size; x++) {
             long id = list.poll();
             job = searchWorkerInTime(id, date);
-            if (searchWorkerInTime(id, date).getIdWorker() != 0) {
+
+            if (job == null) {
                 return id;
             }
         }

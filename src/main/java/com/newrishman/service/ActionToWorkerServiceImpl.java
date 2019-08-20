@@ -5,6 +5,7 @@ import com.newrishman.repository.ActionToWorkerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -19,7 +20,7 @@ public class ActionToWorkerServiceImpl implements ActionToWorkerService {
 
 
     @Override
-    public Set<ActionToWorker> getActionToWorkerByidActions(long id) {
+    public List<ActionToWorker> getActionToWorkerByidActions(long id) {
         return repository.getActionToWorkerByidActions(id);
     }
 }
