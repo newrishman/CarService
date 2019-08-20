@@ -96,6 +96,7 @@ public class Controller {
         cars.add(car);
         Owners owners = ownersService.saveOwner(new Owners(First_Name, Last_Name));
         owners.setCars(cars);
+        
         //сохранение записи на ремонт
         jobService.saveJob(new Job(idAction, car.getIdCar(), idWorker, date));
         System.out.println("эта надпись - конец.");

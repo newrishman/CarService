@@ -6,6 +6,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 public interface ActionsRepository extends JpaRepository<Actions, Long> {
-    @Query(value = "select * from Actions where Actions.Job = :job", nativeQuery = true)
-    Actions getActionsByJob(@Param("job") String job);
+    @Query(value = "select * from Actions where Action = :Action", nativeQuery = true)
+    Actions getActionsByJob(@Param("Action") String job);
 }

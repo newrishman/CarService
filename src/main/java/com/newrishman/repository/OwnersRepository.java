@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 public interface OwnersRepository extends JpaRepository<Owners, Long> {
-    @Query(value = "SELECT * FROM AutoService.Owners where FirstName = :FirstName and LastName = :LastName", nativeQuery = true)
+    @Query(value = "SELECT * FROM AutoService.Owners where First_Name = :FirstName and Last_Name = :LastName", nativeQuery = true)
     Owners getOwnerByFirstAndLastName(
             @Param("FirstName") String firstName,
             @Param("LastName") String lastName);

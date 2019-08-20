@@ -8,6 +8,6 @@ import org.springframework.data.repository.query.Param;
 import java.util.Set;
 
 public interface ActionToWorkerRepository extends JpaRepository<ActionToWorker, Long> {
-    @Query(value = "select * from ActionToWorker where idAction = :idAction", nativeQuery = true)
+    @Query(value = "select * from action_to_worker where id_Action = :idAction", nativeQuery = true)
     Set<ActionToWorker> getActionToWorkerByidActions(@Param("idAction") long id);
 }

@@ -6,6 +6,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 public interface CarsRepository extends JpaRepository<Cars, Long> {
-    @Query(value = "SELECT * FROM Cars where CarModel = :CarModel", nativeQuery = true)
+    @Query(value = "SELECT * FROM Cars where Car_Model = :CarModel", nativeQuery = true)
     Cars getCarsByCarModel(@Param("CarModel") String carModel);
 }

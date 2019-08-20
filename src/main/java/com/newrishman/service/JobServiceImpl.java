@@ -46,9 +46,11 @@ public class JobServiceImpl implements JobService {
         }
 
         //Проверка занятости работника в БД
+        Job job = new Job();
         int size = list.size();
         for (int x = 0; x < size; x++) {
             long id = list.poll();
+            job = searchWorkerInTime(id, date);
             if (searchWorkerInTime(id, date).getIdWorker() != 0) {
                 return id;
             }
