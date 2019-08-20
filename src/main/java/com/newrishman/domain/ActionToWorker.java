@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import javax.persistence.*;
 
 @Entity
+@IdClass(ActionToWorkerID.class)
 @Table(name = "action_to_worker")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class ActionToWorker {
@@ -13,7 +14,10 @@ public class ActionToWorker {
     @Column(name = "id_Action")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idAction;
+
+    @Id
     @Column(name = "id_Worker")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idWorker;
 
 
