@@ -24,7 +24,7 @@ public class Controller {
     private JobService jobService;
     private OwnersService ownersService;
     private WorkersService workersService;
-    private List<ActionToWorker> workers;
+
     private long idWorker;
     private long idAction;
     private String date;
@@ -66,32 +66,30 @@ public class Controller {
         this.workersService = workersService;
     }
 
+
     @GetMapping("/search/")
     public String get(@RequestParam String action, @RequestParam String date) {
+
         //поиск ID работы по названию
-        this.action = action;
         idAction = actionsService.getActionsByJob(action).getIdAction();
-        System.out.println(idAction);
+
         //поиск всех рабочих, выполняющих данную работу
-        workers = new ArrayList<>();
-        workers = actionToWorkerService.getActionToWorkerByidActions(idAction);
-        System.out.println(workers);
-        // поиск свободного работника
-        this.date = date;
+        List<ActionToWorker> workers = actionToWorkerService.getActionToWorkerByidActions(idAction);
+
+        // поиск наличия свободных работников
+
         Long id = jobService.getFreeWorker(workers, date);
         if (id == null) {
-            System.out.println("Данное время записи уже занято");
             return "Данное время уже занято, выбирите другую дату или время";
         } else {
-            idWorker = id;
-            System.out.println("Данное время записи свободно");
             return "Данное время записи свободно. Введите имя, фамилию и марку автомобиля";
         }
     }
 
+
     @PostMapping("/save/")
     public String add(@RequestParam String First_Name, @RequestParam String Last_Name,
-                      @RequestParam String Car_Model) {
+                      @RequestParam String Car_Model, @RequestParam String action, @RequestParam String date) {
         // сохранение всех данных пользователя
         Set<Cars> cars = new HashSet<>();
         Cars car = carsService.saveCars(new Cars(Car_Model));
