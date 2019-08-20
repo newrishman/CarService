@@ -6,7 +6,6 @@ import com.newrishman.repository.JobRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.ArrayBlockingQueue;
@@ -35,6 +34,7 @@ public class JobServiceImpl implements JobService {
 
     @Override
     public Long getFreeWorker(Set<ActionToWorker> set, String date) {
+
         // постановка рабочих в очередь по их ID
         list = new ArrayBlockingQueue<>(10);
         for (ActionToWorker worker : set) {

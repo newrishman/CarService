@@ -70,7 +70,7 @@ public class Cars {
 
    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable(
-            name = "CarOwner", joinColumns = @JoinColumn(name = "idCar"), inverseJoinColumns = @JoinColumn(name = "idOwner")
+            name = "car_owner", joinColumns = @JoinColumn(name = "id_Car"), inverseJoinColumns = @JoinColumn(name = "id_Owner")
     )
     private Set<Owners> owners;
 
