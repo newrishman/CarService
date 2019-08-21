@@ -15,13 +15,11 @@ public class Controller {
 
     private ActionsService actionsService;
     private ActionToWorkerService actionToWorkerService;
-    private CarOwnerService carOwnerService;
     private CarsService carsService;
     private JobService jobService;
     private OwnersService ownersService;
     private WorkersService workersService;
-    private UserInputService userInputService;
-    private long idAction;
+
 
     @Autowired
     public void setActionsService(ActionsService actionsService) {
@@ -31,11 +29,6 @@ public class Controller {
     @Autowired
     public void setActionToWorkerService(ActionToWorkerService actionToWorkerService) {
         this.actionToWorkerService = actionToWorkerService;
-    }
-
-    @Autowired
-    public void setCarOwnerService(CarOwnerService carOwnerService) {
-        this.carOwnerService = carOwnerService;
     }
 
     @Autowired
@@ -58,16 +51,12 @@ public class Controller {
         this.workersService = workersService;
     }
 
-    @Autowired
-    public void setUserInputService(UserInputService userInputService) {
-        this.userInputService = userInputService;
-    }
 
     @GetMapping("/search/")
     public String get(@RequestParam String action, @RequestParam String date) {
 
         // поиск ID работы по названию
-        idAction = actionsService.getActionsByJob(action).getIdAction();
+        long idAction = actionsService.getActionsByJob(action).getIdAction();
 
         // поиск всех рабочих, выполняющих данную работу
         List<ActionToWorker> workers = actionToWorkerService.getActionToWorkerByidActions(idAction);
@@ -87,29 +76,29 @@ public class Controller {
     public String add(@RequestBody UserInput userInput) {
 
         // поиск ID работы по названию
-        idAction = actionsService.getActionsByJob(userInput.getAction()).getIdAction();
+        long idAction = actionsService.getActionsByJob(userInput.getAction()).getIdAction();
 
         // поиск всех рабочих, выполняющих данную работу
         List<ActionToWorker> workers = actionToWorkerService.getActionToWorkerByidActions(idAction);
 
         // поиск наличия свободных работников
-        Long id = jobService.getFreeWorker(workers, userInput.getDate());
-        if (id != null) {
+        Long idWorker = jobService.getFreeWorker(workers, userInput.getDate());
+        if (idWorker != null) {
 
             // сохранение всех данных пользователя
             Set<Cars> cars = new HashSet<>();
-            Cars car = carsService.saveCars(new Cars(userInput.getCar_Model()));
+            Cars car = carsService.saveCars(new Cars(userInput.getCar_model()));
             cars.add(car);
-            Owners owners = ownersService.saveOwner(new Owners(userInput.getFirst_Name(), userInput.getLast_Name()));
+            Owners owners = ownersService.saveOwner(new Owners(userInput.getFirst_name(), userInput.getLast_name()));
             owners.setCars(cars);
 
             // сохранение записи на ремонт
-            jobService.saveJob(new Job(idAction, car.getIdCar(), id, userInput.getDate()));
+            jobService.saveJob(new Job(idAction, car.getIdCar(), idWorker, userInput.getDate()));
 
-            return userInput.getFirst_Name() + " " + owners.getLastName() + ", Ваш автомобиль "
-                    + userInput.getCar_Model() + " записан на " + userInput.getAction()
+            return userInput.getFirst_name() + " " + userInput.getLast_name() + ", Ваш автомобиль "
+                    + userInput.getCar_model() + " записан на " + userInput.getAction()
                     + " " + userInput.getDate() + ".  Вас будет обслуживать: "
-                    + workersService.getWorkersById(id);
+                    + workersService.getWorkersById(idWorker);
         } else {
             return "Ничего не выйдет, записи нет, все заняты. И вообще, у нас обед";
         }
@@ -120,8 +109,4 @@ public class Controller {
         return jobService.getAllJob();
     }
 
-    @GetMapping("/getAll")
-    public List<UserInput> getAlJob() {
-        return userInputService.getAllUserInput();
-    }
 }

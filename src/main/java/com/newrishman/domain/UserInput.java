@@ -1,73 +1,47 @@
 package com.newrishman.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-import javax.persistence.*;
-
-@Entity
-@Table(name = "User_Input")
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class UserInput {
 
-    @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private String first_name;
 
-    @Column(name = "First_Name")
-    private String First_Name;
+    private String last_name;
 
-    @Column(name = "Last_Name")
-    private String Last_Name;
+    private String car_model;
 
-    @Column(name = "Car_Model")
-    private String Car_Model;
-
-    @Column(name = "action")
     private String action;
 
-    @Column(name = "date")
     private String date;
 
-    public UserInput(long id, String first_Name, String last_Name, String car_Model, String action, String date) {
-        this.id = id;
-        First_Name = first_Name;
-        Last_Name = last_Name;
-        Car_Model = car_Model;
+    public UserInput(String first_name, String last_name, String car_model, String action, String date) {
+        this.first_name = first_name;
+        this.last_name = last_name;
+        this.car_model = car_model;
         this.action = action;
         this.date = date;
     }
 
-    public UserInput(String first_Name, String last_Name, String car_Model, String action, String date) {
-        First_Name = first_Name;
-        Last_Name = last_Name;
-        Car_Model = car_Model;
-        this.action = action;
-        this.date = date;
+    public String getFirst_name() {
+        return first_name;
     }
 
-    public String getFirst_Name() {
-        return First_Name;
+    public void setFirst_name(String first_name) {
+        this.first_name = first_name;
     }
 
-    public void setFirst_Name(String first_Name) {
-        First_Name = first_Name;
+    public String getLast_name() {
+        return last_name;
     }
 
-    public String getLast_Name() {
-        return Last_Name;
+    public void setLast_name(String last_name) {
+        this.last_name = last_name;
     }
 
-    public void setLast_Name(String last_Name) {
-        Last_Name = last_Name;
+    public String getCar_model() {
+        return car_model;
     }
 
-    public String getCar_Model() {
-        return Car_Model;
-    }
-
-    public void setCar_Model(String car_Model) {
-        Car_Model = car_Model;
+    public void setCar_model(String car_model) {
+        this.car_model = car_model;
     }
 
     public String getAction() {
@@ -84,5 +58,17 @@ public class UserInput {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+
+    @Override
+    public String toString() {
+        return "UserInput{" +
+                "first_name='" + first_name + '\'' +
+                ", last_name='" + last_name + '\'' +
+                ", car_model='" + car_model + '\'' +
+                ", action='" + action + '\'' +
+                ", date='" + date + '\'' +
+                '}';
     }
 }

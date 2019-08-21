@@ -19,7 +19,6 @@ public class Job {
     private long idWorker;
     @Column(name = "Date_Time")
     private String dateTime;
-    //select lol from test where testcol = '1991-11-11 12';
 
     public Job(long idAction, long idCar, long idWorker, String dateTime) {
         this.idAction = idAction;
