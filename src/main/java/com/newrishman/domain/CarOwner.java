@@ -10,12 +10,14 @@ import javax.persistence.*;
 public class CarOwner {
 
     @Id
-    @Column(name = "id_Car")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+
+    @Column(name = "id_Car")
     private long idCar;
     @Column(name = "id_Owner")
     private long idOwner;
-
 
     public CarOwner(long idCar, long idOwner) {
         this.idCar = idCar;
@@ -48,22 +50,16 @@ public class CarOwner {
 
         CarOwner carOwner = (CarOwner) o;
 
+        if (id != carOwner.id) return false;
         if (idCar != carOwner.idCar) return false;
         return idOwner == carOwner.idOwner;
     }
 
     @Override
     public int hashCode() {
-        int result = (int) (idCar ^ (idCar >>> 32));
+        int result = (int) (id ^ (id >>> 32));
+        result = 31 * result + (int) (idCar ^ (idCar >>> 32));
         result = 31 * result + (int) (idOwner ^ (idOwner >>> 32));
         return result;
-    }
-
-    @Override
-    public String toString() {
-        return "CarOwner{" +
-                "idCar=" + idCar +
-                ", idOwner=" + idOwner +
-                '}';
     }
 }

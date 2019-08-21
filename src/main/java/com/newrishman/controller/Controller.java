@@ -98,8 +98,8 @@ public class Controller {
 
             return userInput.getFirst_name() + " " + userInput.getLast_name() + ", Ваш автомобиль "
                     + userInput.getCar_model() + " записан на " + userInput.getAction()
-                    + " " + userInput.getDate() + ".  Вас будет обслуживать: "
-                    + workersService.getWorkersById(idWorker);
+                    + " " + userInput.getDate() + ".  Вас будет обслуживать: ";
+                    //+ workersService.getWorkersById(idWorker);
         } else {
             return "Ничего не выйдет, записи нет, все заняты. И вообще, у нас обед";
         }
