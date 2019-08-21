@@ -5,9 +5,7 @@ import com.newrishman.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @RestController
 @RequestMapping("/register")
@@ -19,6 +17,7 @@ public class Controller {
     private JobService jobService;
     private OwnersService ownersService;
     private WorkersService workersService;
+    private CarOwnerService carOwnerService;
 
 
     @Autowired
@@ -51,6 +50,10 @@ public class Controller {
         this.workersService = workersService;
     }
 
+    @Autowired
+    public void setCarOwnerService(CarOwnerService carOwnerService) {
+        this.carOwnerService = carOwnerService;
+    }
 
     @GetMapping("/search/")
     public String get(@RequestParam String action, @RequestParam String date) {
@@ -86,11 +89,9 @@ public class Controller {
         if (idWorker != null) {
 
             // сохранение всех данных пользователя
-            Set<Cars> cars = new HashSet<>();
             Cars car = carsService.saveCars(new Cars(userInput.getCar_model()));
-            cars.add(car);
             Owners owners = ownersService.saveOwner(new Owners(userInput.getFirst_name(), userInput.getLast_name()));
-            owners.setCars(cars);
+            CarOwner carOwner = carOwnerService.saveCarOwner(new CarOwner(car.getIdCar(), owners.getIdOwner()));
 
             // сохранение записи на ремонт
             jobService.saveJob(new Job(idAction, car.getIdCar(), idWorker, userInput.getDate()));

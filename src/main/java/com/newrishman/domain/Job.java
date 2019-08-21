@@ -10,8 +10,11 @@ import javax.persistence.*;
 public class Job {
 
     @Id
-    @Column(name = "id_Actions")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+
+    @Column(name = "id_Actions")
     private long idAction;
     @Column(name = "id_Cars")
     private long idCar;
@@ -69,6 +72,7 @@ public class Job {
 
         Job job = (Job) o;
 
+        if (id != job.id) return false;
         if (idAction != job.idAction) return false;
         if (idCar != job.idCar) return false;
         if (idWorker != job.idWorker) return false;
@@ -77,7 +81,8 @@ public class Job {
 
     @Override
     public int hashCode() {
-        int result = (int) (idAction ^ (idAction >>> 32));
+        int result = (int) (id ^ (id >>> 32));
+        result = 31 * result + (int) (idAction ^ (idAction >>> 32));
         result = 31 * result + (int) (idCar ^ (idCar >>> 32));
         result = 31 * result + (int) (idWorker ^ (idWorker >>> 32));
         result = 31 * result + (dateTime != null ? dateTime.hashCode() : 0);
@@ -90,7 +95,7 @@ public class Job {
                 "idAction=" + idAction +
                 ", idCar=" + idCar +
                 ", idWorker=" + idWorker +
-                ", DateTime='" + dateTime + '\'' +
+                ", dateTime='" + dateTime + '\'' +
                 '}';
     }
 }
