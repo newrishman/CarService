@@ -1,14 +1,10 @@
 package com.newrishman.controller;
 
-import com.newrishman.domain.ActionToWorker;
-import com.newrishman.domain.Cars;
-import com.newrishman.domain.Job;
-import com.newrishman.domain.Owners;
+import com.newrishman.domain.*;
 import com.newrishman.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -24,12 +20,8 @@ public class Controller {
     private JobService jobService;
     private OwnersService ownersService;
     private WorkersService workersService;
-
-    private long idWorker;
+    private UserInputService userInputService;
     private long idAction;
-    private String date;
-    private String action;
-
 
     @Autowired
     public void setActionsService(ActionsService actionsService) {
@@ -66,14 +58,18 @@ public class Controller {
         this.workersService = workersService;
     }
 
+    @Autowired
+    public void setUserInputService(UserInputService userInputService) {
+        this.userInputService = userInputService;
+    }
 
     @GetMapping("/search/")
     public String get(@RequestParam String action, @RequestParam String date) {
 
-        //поиск ID работы по названию
+        // поиск ID работы по названию
         idAction = actionsService.getActionsByJob(action).getIdAction();
 
-        //поиск всех рабочих, выполняющих данную работу
+        // поиск всех рабочих, выполняющих данную работу
         List<ActionToWorker> workers = actionToWorkerService.getActionToWorkerByidActions(idAction);
 
         // поиск наличия свободных работников
@@ -88,24 +84,44 @@ public class Controller {
 
 
     @PostMapping("/save/")
-    public String add(@RequestParam String First_Name, @RequestParam String Last_Name,
-                      @RequestParam String Car_Model, @RequestParam String action, @RequestParam String date) {
-        // сохранение всех данных пользователя
-        Set<Cars> cars = new HashSet<>();
-        Cars car = carsService.saveCars(new Cars(Car_Model));
-        cars.add(car);
-        Owners owners = ownersService.saveOwner(new Owners(First_Name, Last_Name));
-        owners.setCars(cars);
+    public String add(@RequestBody UserInput userInput) {
 
-        //сохранение записи на ремонт
-        jobService.saveJob(new Job(idAction, car.getIdCar(), idWorker, date));
-        System.out.println("эта надпись - конец.");
-        return (First_Name + " " + Last_Name + ", Ваш автомобиль " + Car_Model
-                + " записан на " + action + " на дату " + date);
+        // поиск ID работы по названию
+        idAction = actionsService.getActionsByJob(userInput.getAction()).getIdAction();
+
+        // поиск всех рабочих, выполняющих данную работу
+        List<ActionToWorker> workers = actionToWorkerService.getActionToWorkerByidActions(idAction);
+
+        // поиск наличия свободных работников
+        Long id = jobService.getFreeWorker(workers, userInput.getDate());
+        if (id != null) {
+
+            // сохранение всех данных пользователя
+            Set<Cars> cars = new HashSet<>();
+            Cars car = carsService.saveCars(new Cars(userInput.getCar_Model()));
+            cars.add(car);
+            Owners owners = ownersService.saveOwner(new Owners(userInput.getFirst_Name(), userInput.getLast_Name()));
+            owners.setCars(cars);
+
+            // сохранение записи на ремонт
+            jobService.saveJob(new Job(idAction, car.getIdCar(), id, userInput.getDate()));
+
+            return userInput.getFirst_Name() + " " + owners.getLastName() + ", Ваш автомобиль "
+                    + userInput.getCar_Model() + " записан на " + userInput.getAction()
+                    + " " + userInput.getDate() + ".  Вас будет обслуживать: "
+                    + workersService.getWorkersById(id);
+        } else {
+            return "Ничего не выйдет, записи нет, все заняты. И вообще, у нас обед";
+        }
     }
 
     @GetMapping
     public List<Job> getAllJob() {
         return jobService.getAllJob();
+    }
+
+    @GetMapping("/getAll")
+    public List<UserInput> getAlJob() {
+        return userInputService.getAllUserInput();
     }
 }
