@@ -10,10 +10,10 @@ import javax.persistence.*;
 public class Job {
 
     @Id
-    @Column(name = "id_Action")
+    @Column(name = "id_Actions")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idAction;
-    @Column(name = "id_Car")
+    @Column(name = "id_Cars")
     private long idCar;
     @Column(name = "id_Worker")
     private long idWorker;
